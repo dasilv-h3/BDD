@@ -86,3 +86,5 @@ UPDATE dossier_medical
 SET resultat = "INVALIDE"
 WHERE id IN (1, 2);
 
+-- Requete de la view
+SELECT * FROM Vue_Medecin_RDV;
