@@ -1,18 +1,24 @@
-CREATE VIEW Vue_Medecin_RDV AS
-SELECT
-    Persona.nom,
-    Persona.prenom,
-    Medecin.specialisation,
-    COUNT(Examen.id) AS nombre_rdv
-FROM
-    Medecin
-JOIN
-    Persona ON Medecin.id = Persona.id
-JOIN
-    S_Occupe ON Medecin.id = S_Occupe.medecin_id
-JOIN
-    Examen ON S_Occupe.examen_id = Examen.id
-GROUP BY
-    Medecin.id, Persona.nom, Persona.prenom, Medecin.specialisation
-HAVING
-    (SUM(Examen.duree) / 60) < 7;
+DELIMITER //
+
+CREATE PROCEDURE checkSupHour()
+BEGIN
+    DECLARE nb_row INT;
+
+    SELECT COUNT(*) INTO nb_row FROM vue_medecin_rdv;
+
+    IF nb_row > 5 THEN
+       
+        ROLLBACK;
+    ELSE
+
+        INSERT INTO `s_occupe` (`medecin_id`, `examen_id`) VALUES
+        (1, 1), 
+        (2, 2),  
+        (4, 3),
+        (16, 4), 
+        (17, 5);
+        COMMIT;
+    END IF;
+END //
+
+DELIMITER ;

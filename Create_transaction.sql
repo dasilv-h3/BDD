@@ -10,7 +10,9 @@ INSERT INTO `s_occupe` (`medecin_id`, `examen_id`) VALUES
 
 SELECT * FROM Mavue 
     
-CASE
-    WHEN (SELECT COUNT(*) FROM mavue) > 5 THEN ROLLBACK
-    WHEN (SELECT COUNT(*) FROM mavue) < 5 THEN COMMIT
-END
+WHERE (SELECT COUNT(*) FROM mavue) > 5
+ROLLBACK
+OR 
+WHERE (SELECT COUNT(*) FROM mavue) < 5
+COMMIT
+   
