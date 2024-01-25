@@ -19,17 +19,17 @@ superficies pour les réaménager en salle d’opération ou de radiologie */
 SELECT *
 FROM salle
 ORDER BY Superficie DESC
-LIMIT 3
+LIMIT 3;
 
 /*Contexte : On souhaite afficher sur le site de l’établissement les soins et examens pratiquées*/
 
 SELECT DISTINCT type 
-FROM examen
+FROM examen;
 
 /*Contexte : A la demande du conseil des hôpitaux de Paris, le groupe sanguin du patient doit être enregistré dans la base de donnée*/
 
 ALTER TABLE PATIENT
-ADD COLUMN group_sanguin VARCHAR(3),
+ADD COLUMN group_sanguin VARCHAR(3);
 
 
 /*Contexte : Aucun contexte adapté à notre BDD. Nous souhaitons avoir le nom prénom 
@@ -40,7 +40,7 @@ SELECT nom, prenom, id
 FROM EMPLOYE
 UNION 
 SELECT nom, prenom, id 
-FROM ADMIN
+FROM ADMIN;
 
 
 /*Contexte : On souhaite répertorier sur un mois, les différentes opérations pratiquées dans l’établissement*/
@@ -49,13 +49,13 @@ SELECT type, date
 FROM examen
 WHERE type LIKE '%opération%' 
 AND 
-date BETWEEN '2024-01-01' AND '2024-01-31'
+date BETWEEN '2024-01-01' AND '2024-01-31';
 
 /*Contexte : On souhaite chaque année, 
 classée les dossier médicaux dans un fichier Excel, 
 vider la table et remettre à zéro les ID pour plus de visibilité*/
 
-TRUNCATE TABLE dossier_medical
+TRUNCATE TABLE dossier_medical;
 
 
 /*Contexte : Déterminer les différents type de salle*/
@@ -69,7 +69,7 @@ FROM SALLE;
 
 
 /*Contexte : Changement de corps mdédical*/
-DROP TABLE MEDECIN
+DROP TABLE MEDECIN;
 
 /*Contexte : explication de la requête propriété*/
 EXPLAIN  SELECT Numero, Type, Superficie,
@@ -84,5 +84,5 @@ FROM SALLE;
 donc on set le résultat comme "invalide"*/
 UPDATE dossier_medical
 SET resultat = "INVALIDE"
-WHERE id IN (1, 2)
+WHERE id IN (1, 2);
 
