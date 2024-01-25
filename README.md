@@ -8,6 +8,7 @@ La base de données "Hopital" a été conçue pour gérer efficacement les infor
 
  - Un PDF avec le schéma MCD
  - Un PDF avec le schéma MLD
+ - Un PDF avec l'explication de la normalisation
  - Un fichier SQL pour la création de la base de données
  - Un fichier SQL avec les différentes requêtes
  - Un fichier SQL avec la création de la View
